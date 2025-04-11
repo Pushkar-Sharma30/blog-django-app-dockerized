@@ -10,8 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+
+
 from dotenv import load_dotenv
 from pathlib import Path
+import pymysql
+pymysql.install_as_MySQLdb()
 
 load_dotenv()
 
@@ -85,11 +89,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.getenv('MYSQL_DATABASE'),
         'USER': os.getenv('MYSQL_USER'),
-        'PASSWORD': os.getenv('MYSQL_ROOT_PASSWORD'),  # ✔️ use ROOT password since using root
-        'HOST': os.getenv('MYSQL_HOST', 'mysql_db'),
-        'PORT': os.getenv('MYSQL_PORT', '3306'),
+        'PASSWORD': os.getenv('MYSQL_ROOT_PASSWORD'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),  # ✅ Changed
+        'PORT': os.getenv('DB_PORT', '3306'),       # ✅ Changed
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
