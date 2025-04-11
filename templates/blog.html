@@ -1,0 +1,163 @@
+{% extends 'common/base.html' %}
+    
+{% block content %}
+
+    <div>
+        <div class="px-4 py-32 md:py-60 mx-auto">
+          <div class=" text-center">
+              <p class='text-5xl lg:text-7xl leading-snug font-bold mb-3'>Blogger<span class='text-5xl lg:text-7xl leading-snug font-bold mb-3 text-orange-500 font-bold'>Plus</span></p>
+              <p class="text-3xl font-semibold mb-3">A home for great
+                writers and readers</p>
+              <p class='lg:w-3/5 mx-auto mb-5 text-primary'>Start your blog today and join a community of writers and readers who are passionate about sharing their stories and ideas. We offer everything you need to get started, from tips and tutorials. </p>
+              <div class="pt-8">
+                  <a href="{% url 'create_blog' %}" class="bg-orange-500  px-4 py-2 rounded mx-auto hover:bg-opacity-80 transition-all duration-200 ease-in">Create</a>
+              </div>
+
+
+                
+             
+            </div>
+        </div>
+        <!-- <div class="mb-8 md:mb-2">
+            <i class="fa-solid fa-angle-down absolute left-0 right-0 text-center bottom-2   text-4xl "></i>  
+            <i class="fa-solid fa-angle-down absolute left-0 right-0 text-center bottom-6  text-4xl "></i>  
+        </div> -->
+       
+    </div>
+
+
+    
+
+
+    
+    <div class="mx-4  py-4 md:pb-6 sm:p-10 md:py-4">
+
+        <div class="border-b border-gray-400 w-full border-t mt-4 mb-4 flex justify-between items-center text-sm">
+            <div class=" flex  items-center py-4 pr-2 uppercase">
+    
+                <div class="flex justify-center items-start flex-wrap gap-2">
+                    <a href="/" class="inline-block text-gray-600 hover:text-orange-500">All Blogs</a> <span class="text-gray-400 font-bold">|</span>
+                    {% for category in categories %}
+                        <a href="/?category={{category.id}}" class="inline-block text-gray-600 hover:text-orange-500">{{category.name}}</a>  <span class="text-gray-400 font-bold">|</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <form action="/search/" method="get" class="hidden md:block">
+                <input type="text" name="search" placeholder="Search..." class="bg-[#232525] px-4 w-40 py-2 text-white  rounded focus:w-60 outline-none border-none transition-all duration-200 ease "/>          
+                <button type="submit" class="px-4 py-2 bg-orange-500 rounded-lg text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+            </form>
+            
+            <!-- <a href="#">See All</a> -->
+        </div>
+
+        
+    </div>
+
+    
+    <div id="blog" class="max-w-screen-xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 mx-8 gap-5 ">
+        {% if page_obj %}
+        {% for blog in page_obj %}
+            <!-- CARD 1 -->
+            <div class=" w-80 md:w-60 h-88 mx-auto overflow-hidden shadow-lg  flex flex-col rounded-2xl">
+                
+                <div class="relative -z-10"><a href="{% url 'read_blog' blog.id %}">
+                        <img class=" w-full h-60 bg-white md:h-48"
+                            src="{{blog.image.url}}"
+                            alt="Sunset in the mountains">
+                        <!-- <div
+                            class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25">
+                        </div> -->
+                    </a>
+                    <a href="">
+                        <div
+                            class="text-xs absolute top-0 right-0 bg-orange-500 px-4 py-2  mt-3 mr-3 hover:bg-white hover:text-orange-500 transition duration-500 ease-in-out">
+                            {{blog.category}}
+                            
+                        </div>
+                    </a>
+                </div>
+                <div class="px-6 md:w-full md:h-36 py-4 mb-auto">
+                    <a href="{% url 'read_blog' blog.id %}"
+                        class="text-[#F97316] title md:hidden font-medium text-lg inline-block transition duration-500 ease-in-out inline-block mb-1">{{blog.title | truncatewords:12 }}</a>
+                    <a href="{% url 'read_blog' blog.id %}"
+                        class="text-[#F97316] title font-medium text-md hidden md:inline-block transition duration-500 ease-in-out inline-block">{{blog.title | truncatewords:9 }}</a>
+                    <p class="text-gray-500 pt-1 text-sm">
+                        {{blog.content | truncatewords:6}}
+                    </p>
+                </div>
+                <div class="px-4 py-2 flex flex-row items-center justify-between bg-gray-300">
+                    <span href="#" class=" text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
+                        <!-- <svg height="13px" width="13px" version="1.1" id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                            xml:space="preserve">
+                            <g>
+                                <g>
+                                    <path
+                                        d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256 c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128 c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z">
+                                    </path>
+                                </g>
+                            </g>
+                        </svg> -->
+                        <span class="ml-1 text-center">Created by: <br> <strong>{{blog.authors.username}}</strong></span>
+                    </span>
+                    <!-- {{user.id}}
+                    {{blog.authors.id}} -->
+                    <!-- {% if user.is_authenticated %}
+                        {% if user.id == blog.authors.id %}
+                            <span href="#" class="py-1 font-regular text-gray-900 mr-1 flex flex-row items-center">
+                                
+                                <a href="{% url 'read_blog' blog.id %}" class="ml-1 text-md">Edit</a>
+                                <a href="{% url 'delete_blog' blog.id %}" class="ml-1 text-md">Delete</a>
+                            </span>
+                        {% endif %}
+                    {% endif %} -->
+                    <span href="#" class="font-regular text-gray-900 mr-1 flex flex-col items-center">
+                                
+                        <a href="{% url 'read_blog' blog.id %}" class="ml-1 font-bold tracking-wide text-orange-600 text-center text-md">Read </a>
+                        <!-- <p class="text-[12px]">[4 mins read]</p> -->
+
+                        <!-- <a href="{% url 'delete_blog' blog.id %}" class="ml-1 text-md">Delete</a> -->
+                    </span>
+                </div>
+            </div>
+
+            {% endfor %}
+            {% else %}
+
+            <h1 class="px-8">No Blogs found</h1>
+            {% endif %}
+
+            
+            
+    </div>
+
+    <div class="m-10">
+        {{search_result}}
+        <span class="space-x-3 flex justify-between">
+            {% if page_obj.has_previous %}
+                {% if categoryID == None %}
+
+                <!-- #edited this check this today!!!!! -->
+
+                    <a href="{% if search_result %}?page={{page_obj.previous_page_number}}&search={{search_result}}{% else %}?page={{page_obj.previous_page_number}}{% endif %}" class="bg-orange-500 rounded px-2 py-2 text-white">&larr;Previous</a>
+                {% else %}
+                    <a href="{% if search_result %}?page={{page_obj.previous_page_number}}&category={{categoryID}}&search={{search_result}}{% else %}?page={{page_obj.previous_page_number}}&category={{categoryID}}{% endif %}"" class="bg-orange-500 rounded-xl px-2 py-2 text-white">&larr;Previous</a>
+                {% endif %}
+            {% endif %}
+
+            {% if page_obj.has_next %}
+                {% if categoryID == None %}
+                    <a href="{% if search_result %}?page={{page_obj.next_page_number}}&search={{search_result}}{% else %}?page={{page_obj.next_page_number}}{% endif %}" class="bg-orange-500 rounded px-3 py-2 text-white">Next&rarr;</a>
+                {% else %}
+                    <a href="{% if search_result %}?page={{page_obj.next_page_number}}&category={{categoryID}}&search={{search_result}}{% else %}?page={{page_obj.next_page_number}}&category={{categoryID}}{% endif %}" class="bg-orange-500 rounded-xl px-3 py-2 text-white">Next&rarr;</a>
+                {% endif %}
+            {% endif %}
+        </span>
+    </div>
+
+   
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'common/base.html' %}
+
+    
+{% block content %}
+
+<div class="pt-10 md:pt-24 pb-0">
+    <div class="bg-white shadow-2xl rounded-2xl mx-4 my-4 md:my-12 md:mx-28 ">
+        
+        <div class="h-auto md:flex justify-around">
+            
+            <!-- <div class="hidden md:block">
+                <img src="./12982910_5124556-Photoroom.png-Photoroom.png" width="500" alt="">
+            </div> -->
+
+            <form method="post" action="{% url 'update_blog' blog.id %}" enctype="multipart/form-data" class="w-full flex  flex-col md:flex-row justify-center px-10 py-10 gap-4">
+                {% csrf_token %}
+                <div class="flex flex-col gap-4">
+                    <p class="text-orange-600 text-center text-[28px] font-bold">Create Your Blog</p>
+                    <div class="border border-orange-500 w-28 text-center mx-auto"></div>
+
+                    <div>
+                        <input class="w-72 md:w-[32rem] py-2 px-3 border focus:outline-none rounded-lg" type="text" id="title" name="title" placeholder="Title" value="{{blog.title}}" required >
+                    </div>
+                    <select name="category" class="py-1 w-72 md:w-[32rem] border py-2 px-3 focus:outline-none text-md font-normal rounded-lg" required>
+                        <option selected disabled>Select Topic</option>
+                        {% for category in categories %}
+                        <option value="{{category.name}}">{{category.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <div>
+                        <input type="file" name="uploadimg" id="img" accept="image/x-png,image/gif,image/jpeg" class="text-sm text-grey-500
+                        file:mr-2 file:py-2 file:px-6
+                        file:rounded-full file:border-0
+                        file:text-sm file:font-medium
+                        hover:file:cursor-pointer" placeholder="Upload Image" required/>
+                        <!-- <label for="img" class="px-3 rounded-lg bg-[#65C0C4] text-[#100F33] font-semibold py-2 text-lg rounded-md"><i class="ri-image-add-fill"></i></label> -->
+                    </div>
+                    
+                    <div>
+                        <textarea rows="12" class="w-72 md:w-[32rem] rounded-lg border py-2 px-3 focus:outline-none" placeholder="Write your thoughts here..." id="content" name="content" required>{{blog.content}}</textarea>
+                        <!-- <textarea rows="12" class="w-72 md:w-[32rem] py-2 px-3 border focus:outline-none rounded-lg" type="text" id="title" name="title" placeholder="Title" value="{{blog.content}}" required > -->
+
+                    </div>
+                    <div>
+                        <button type="submit" class="bg-orange-500 px-2 md:px-4 py-2 text-white  text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in">Post</button>
+                    </div>
+                    
+                    
+                </div>
+                
+                
+              
+                
+                
+               
+            </form>
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+            {% endif %}
+
+
+<!-- w-full flex flex-col md:flex-row justify-center px-8 py-20 gap-4 -->
+            <div class="px-10 py-12 md:py-20 space-y-2">
+                <p class="text-orange-600 text-center text-[28px] font-bold w-full h-auto">Dictionary</p>
+                <div class="border border-orange-500 w-28 text-center mx-auto"></div>
+                <p class="text-orange-600 text-center text-[20px] w-full h-auto">ran out of words? Search for words here on dictionary!</p>
+                <div>
+                    <input  class="w-72 py-2 px-3 border focus:outline-none rounded-lg" type="text" placeholder="Search any word...">
+                </div>
+                <div>
+                    <textarea name="" id="" rows="12" class="w-72 py-2 px-3 border focus:outline-none rounded-lg" placeholder="get meanings here"></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="bg-orange-500 px-2 md:px-4 py-2 text-white text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in">Search</button>
+                </div>
+                
+        
+            </div>
+
+        </div>
+    </div>
+</div>
+    
+
+
+    
+
+   
+
+
+ 
+
+
+    
+{% endblock %}

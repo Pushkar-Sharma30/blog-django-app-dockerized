@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Inter:wght@100..900&family=Kaushan+Script&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Inter:wght@100..900&family=Kaushan+Script&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Satisfy&display=swap" rel="stylesheet"> -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Inter:wght@100..900&family=Kaushan+Script&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Revolution&family=Satisfy&display=swap" rel="stylesheet"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Cedarville+Cursive&family=Inter:wght@100..900&family=Kaushan+Script&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Revolution&family=Satisfy&display=swap" rel="stylesheet">
+
+
+    <style>
+        @font-face {
+            font-family: myFont;
+            src: url(/static/Instagram\ Sans.ttf);
+        }
+    </style>
+</head>
+<body style="font-family: myFont;">
+    <!-- <div class="w-full h-screen flex flex-col md:flex-row md:justify-between justify-center items-center bg-cover" style="background-image:linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(./bg-blog.jpg)"> -->
+
+    <div class="w-full h-screen overflow-hidden flex flex-col md:flex-row md:justify-between py-14 md:py-0 items-center md:bg-cover bg-auto bg-no-repeat bg-center" style="background-image:linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(/static/bg-blog.jpg)">
+        <div class="w-auto h-56 md:h-80 pt-4 md:pt-0 flex flex-col items-center gap-6 mx-auto">
+            <p class="text-3xl text-center md:text-5xl text-white tracking-wider font-bold">Welcome to <span class="md:hidden"><br></span> <span class="text-5xl md:text-7xl text-orange-500">Blogger Plus</span></p>
+            <p class="text-2xl md:text-5xl text-center tracking-wider text-white">"A home for great <br> writers and readers."</p>
+            <p class="hidden md:block text-2xl leading-8 tracking-wider text-center text-white">Read the blogs from all over the world, stay updated <br> with latest news, technologies and more...</p>
+        </div>
+
+        <!-- <p class="md:hidden text-3xl text-white text-center tracking-wider font-bold">Welcome to <br> <span class="text-5xl text-orange-500">Blogger Plus</span></p> -->
+
+        <!-- <div class="w-4/5 md:w-2/5 md:h-5/6 h-[450px] flex justify-center items-center flex-col gap-3 overflow-hidden md:rounded-tl-[80px]"> -->
+        <div class="w-4/5 md:w-2/5 md:h-5/6 h-[800px] flex justify-center items-center flex-col gap-3 overflow-hidden">
+            <!-- <form method="post" action="" class="w-80 h-[480px] px-6 md:py-6 md:border rounded-lg flex flex-col gap-4 "> -->
+            <form method="post" action="" class="w-80 h-[800px] md:h-[480px] px-6  rounded-lg flex flex-col justify-center gap-4 ">
+                {% csrf_token %}
+                <h1 class="text-center tracking-wider text-4xl font-semibold text-orange-600">Login</h1> 
+                <div class="border-b mb-2 border-orange-500"></div>  
+                <!-- <input type="text" class="bg-gray-900 opacity-30 focus:opacity-75 text-white text-lg px-4 py-3 border border-gray-100 rounded-2xl focus:outline-none focus:border-orange-500 placeholder-gray-100" placeholder="Username"> -->
+                <input type="text" name="username" class="bg-gray-900 opacity-30 focus:opacity-75 text-white text-lg px-4 py-2 border border-gray-100 rounded-2xl focus:outline-none focus:border-orange-500 placeholder-gray-100" placeholder="Email" required>
+                <input type="password" name="password" class="bg-gray-900 opacity-30 focus:opacity-75 text-white text-lg px-4 py-2 border border-gray-100 rounded-2xl focus:outline-none focus:border-orange-500 placeholder-gray-100" placeholder="Password" required>
+                <!-- <input type="text" class="bg-gray-900 opacity-30 focus:opacity-75 text-white text-lg px-4 py-3 border border-gray-100 rounded-2xl focus:outline-none focus:border-orange-500 placeholder-gray-100" placeholder="Password again"> -->
+                <div class="flex flex-col items-center gap-3">
+                    <button type="submit" class="bg-orange-500 tracking-wider py-2 w-28 rounded-[4rem] text-lg text-white hover:bg-orange-600">Login</button>
+                    <span class="text-white tracking-wide text-lg">New on Blogger? <a href="{% url 'register' %}" class="text-orange-500 hover:text-orange-600 text-xl border-b border-orange-500 font-semibold tracking-wider">Sign Up</a></span>
+                </div>
+                {% if error_message %}
+                    <p class=" bg-red-200 px-2 py-2 rounded text-red-700 text-md">{{error_message}}</p>
+                {% endif %}
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{% extends 'common/base.html' %}
+    
+{% block content %}
+<div class="pt-6 md:pt-24 pb-0">
+
+    
+
+    <div class="flex flex-col justify-between items-center mx-12  mx-6">
+        <img class=" w-full md:w-4/5 md:h-[35rem] bg-white rounded-xl" src="{{blog.image.url}}" alt="Sunset in the mountains">            
+    </div>
+
+    <div class="flex justify-around py-4 ">
+        <small class="text-center">Published At: <br> {{blog.created_at}}</small>
+        <small class="text-center">Published By: <br> {{blog.authors.username}}</small>
+    </div>
+    
+    <div class=" mx-4 md:mx-12 flex flex-col justify-between items-centers  gap-4 rounded-t-3xl shadow-3xl px-3 md:px-6">
+        <div class="text-orange-600 text-left text-[28px] font-bold w-full h-auto">{{blog.title}}</div>
+    </div>
+    
+
+
+    <div class="h-auto px-6 md:px-20 leading-8 py-6 text-lg  align-justify">
+        {{blog.content}}
+    </div>
+
+    <div class="flex justify-between items-center bg-orange-500 gap-2 mx-6 md:mx-20 rounded-lg  py-2 px-2">
+
+        <div class="py-2 flex justify-center items-center px-2">
+            <a href="/" class="bg-[#E98B34] text-white font-semibold tracking-wide py-2 px-2 md:px-2 md:py-2 rounded-md md:text-sm">Back to Home</a>
+        </div>
+        <div>                    
+            {% if user.is_authenticated %}
+                {% if user.id == blog.authors.id %}
+
+                <a href="{% url 'update_blog' blog.id %}" class="bg-[#E98B34] text-white font-semibold tracking-wide py-2 px-2 md:px-2 md:py-2 rounded-md md:text-sm">Edit</a>
+                <a href="{% url 'delete_blog' blog.id %}" class="bg-[#E98B34] text-white font-semibold tracking-wide py-2 px-2 md:px-2 md:py-2 rounded-md md:text-sm">Delete</a>
+
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    
+<!--     
+    {% for message in messages %}
+        <p class="text-center text-green-500">{{message}}</p>
+    {% endfor %}
+1-->
+
+</div>
+
+
+{% endblock %}

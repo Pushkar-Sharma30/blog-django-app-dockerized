@@ -1,0 +1,39 @@
+:root{
+    --background-color: #232323;
+    --text-color: white;
+}
+body{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    
+    transition: background-color .3s;
+    
+}
+
+.container{
+    display: flex;
+    gap: 1em;
+}
+
+.handle{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background: white;
+    transition: transform .3s;
+}
+
+
+.switch{
+    width: 75px;
+    background: #2f2f2f;
+    border-radius: 5em;
+    display: flex;
+    align-items: center;
+    padding: .5em;
+    cursor: pointer;
+}
+
+.move-right{
+    transform: translateX(45px);
+}

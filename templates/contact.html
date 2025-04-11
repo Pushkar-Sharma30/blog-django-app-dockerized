@@ -1,0 +1,53 @@
+{% extends 'common/base.html' %}
+    
+{% block content %}
+<div class="pt-20 md:pt-32 pb-0">
+
+
+    <div class="bg-white mx-4 md:mx-12  rounded-t-3xl shadow-3xl p-8">
+        <div class="text-orange-600 text-center text-[28px] font-bold w-full h-auto">Speak To Us!</div>
+        <div class="border border-orange-500 w-28 text-center mx-auto"></div>
+        <p class="text-orange-600 text-center text-[20px] py-2 w-full h-auto">Send us your queries, suggestions, and ideas so that we can make the app more suitable for you. <br> Our <strong>BloggerPlus</strong> team will never let you feel unheard.</p>
+
+    </div>
+
+    <div class="bg-white mx-4 my-2 md:mx-12 rounded-b-3xl shadow-lg">
+        <div class="h-auto md:flex justify-around">
+            <div class="hidden md:block">
+                <img src="/static/12982910_5124556-Photoroom.png-Photoroom.png" width="500" alt="">
+            </div>
+
+            <form method="post" action="{% url 'submit_contact' %}" class="flex flex-col p-12 pt-2 justify-center items-center space-y-4">
+                {% csrf_token %}
+                <p class=" text-center text-orange-600 border-b-2 border-orange-500 pt-6 text-3xl">Contact us</p>
+                <!-- <div class="border border-orange-500 w-28 text-center mx-auto"></div> -->
+
+
+                <div class="">
+                    <!-- <input type="text" class="px-4 py-3 outline-none rounded-md" size="30" placeholder="First Name"> -->
+                    <input type="text" class="px-4 py-3 border-2 border-orange-500 outline-none rounded-md" size="30" placeholder="Name" name="name">
+
+                </div>
+                <div class="">
+                    <!-- <input type="text" class="px-4 py-3 outline-none rounded-md" size="30" placeholder="First Name"> -->
+                    <input type="email" class="px-4 py-3 border-2 border-orange-500 outline-none rounded-md" size="30" placeholder="Email" name="email">
+                </div>
+                <div>
+                    <textarea class="rounded-md w-80 px-4 py-3 border-2 border-orange-500 outline-none " placeholder="Write here..." name="" id="" cols="45" rows="8" name="message"></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="text-white bg-orange-500 px-8 py-2 font-bold text-lg rounded-md">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    
+    {% for message in messages %}
+        <p class="text-center text-green-500">{{message}}</p>
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}

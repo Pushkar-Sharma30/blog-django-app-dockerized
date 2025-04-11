@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<style>
+    @font-face {
+        font-family: myFont;
+        src: url(/static/Instagram\ Sans.ttf);
+    }
+    :root{
+    --background-color: #FFDFDF;
+    --text-color: black;
+    }
+body{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    
+    transition: background-color .3s;
+    /* font-family: sans-serif; */
+}
+
+.handle{
+    border-radius: 50%;
+    
+    /* background: white; */
+    transition: transform .3s;
+}
+
+
+
+.switch{
+        /* padding: 0.25rem; */
+        border-radius: 9999px;
+        /* background-color: transparent; */
+        /* border: 1px solid orange; */
+        /* width: 4rem; */
+        /* height: 1.8rem; */
+    }
+    /* .move-right{
+    transform: translateX(31px);
+} */
+    
+</style>
+<body>
+    <header class="md:fixed md:w-full shadow-lg">
+        <nav class="px-4 py-1 max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center justify-center gap-2">
+                <a href="/" class='text-3xl py-4 hover:text-orange-500'>Blogger<span class='text-orange-500 font-bold'>Plus</span></a>
+                
+                    <!-- <p class="label">Dark</p> -->
+                    <div class="switch" id="switch">
+                        <div class="handle w-4" id="handle"><img src="/static/sun_13443601.png" id="myImg" style="max-width:30px; cursor: pointer;" alt=""></div>
+                        <!-- <div class=" handle h-4 w-4" id="handle"><img src="/static/contrast.png" alt=""></div> -->
+                    </div>
+                    <!-- <p class="label">Light</p> -->
+                
+            </div>
+            
+            <div
+                class="nav-links backdrop-blur-2xl bg-white/10 md:bg-transparent duration-500 md:static absolute md:h-auto h-96 left-0 top-[-80%] md:w-auto  w-full flex items-center px-5">
+                <ul class="flex md:flex-row flex-col md:items-center md:gap-10 gap-8">
+                    
+                    <ul class="flex item-center justify-between">
+                        
+                        <!-- <a href="/" class='md:hidden absolute right-6 top-5 text-3xl  py-4 hover:text-orange-500'>Blogger<span class='text-orange-500 font-bold'>Plus</span></a> -->
+                        <!-- <div class="md:hidden">
+                            <input type="text" placeholder="Search..." class="bg-[#232525] w-36 px-2 py-2 rounded"/><i class="fa-solid fa-magnifying-glass relative text-md right-8 text-gray-400"></i>                  
+                        </div> -->
+
+                        {% if user.is_authenticated %}
+                        <li class="mr-4 md:hidden ">
+                            <!-- <a class="bg-orange-500 px-2 md:px-4 py-2  text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in " href="{% url 'create_blog' %}">Create</a> -->
+                            <a class="bg-orange-500 px-2 md:px-4 py-2 text-black  text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in " href="{% url 'logout' %}">{{user}}, Logout</a>
+                        </li>
+                            
+                        {% else %}
+                        <li class="mr-4 md:hidden">
+                            
+                            <!-- <a class="bg-orange-500 px-2 md:px-4 py-2  text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in " href="{% url 'create_blog' %}">Create</a> -->
+                            
+                            <a class="bg-orange-500 px-2 md:px-4 py-2  text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in" href="{% url 'login' %}">Login</a>   
+                            <a class="bg-orange-500 px-2 md:px-4 py-2  text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in" href="{% url 'register' %}">Signup</a>
+                        </li>
+                        {% endif %}
+                        
+                    </ul>
+
+
+                    <li>
+                        <a class="font-semibold rounded   border-b-2 hover:border-orange-600 hover:shadow-sm px-1 py-1 transition-all mr-4 duration-200 ease-in " href="{% url 'blog' %}">Home</a>
+                    </li>
+                    <li>
+                        <a class=" font-semibold rounded   border-b-2 hover:border-orange-600 hover:shadow-sm  px-1 py-1 transition-all mr-4 duration-200 ease-in " href="{% url 'about' %}">About</a>
+                    </li>
+                    <li>
+                        <a class=" font-semibold rounded   border-b-2 hover:border-orange-600 hover:shadow-sm  px-1 py-1 transition-all mr-4 duration-200 ease-in " href="{% url 'premium' %}">Premium</a>
+                    </li>
+                    <li>
+                        <a class=" font-semibold rounded   border-b-2 hover:border-orange-600 hover:shadow-sm  px-1 py-1 transition-all mr-4 duration-200 ease-in " href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+                    <li>
+                        <!-- <a class=" font-semibold rounded   border-b hover:border-orange-300 hover:shadow-sm  px-1 py-1 transition-all mr-4 duration-200 ease-in " href="{% url 'add_blog' %}">Donate</a> -->
+                    </li>
+                    
+                    <!-- <li>
+                        <a class="bg-orange-500 px-2 md:px-4 py-2  text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in " href="{% url 'create_blog' %}">Create</a>
+                    </li> -->
+
+
+                        
+                    
+                    
+                </ul>
+            </div>
+            <div class="flex items-center gap-6">
+                <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-4xl cursor-pointer  md:hidden" ></ion-icon>
+            </div>
+
+                <ul class="hidden md:flex">
+
+
+                    {% if user.is_authenticated %}
+                    <li class="mr-4">
+                        <!-- <a class="bg-orange-500 px-2 md:px-4 py-2  text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in " href="{% url 'add_blog' %}">Create</a> -->
+                        <a class="bg-orange-500 px-2 md:px-4 py-2  text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in " href="{% url 'logout' %}">{{user}}, Logout</a>
+                    </li>
+                        
+                    {% else %}
+                    <li>
+                        <!-- <a class="bg-orange-500 px-2 md:px-4 py-2  text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in " href="{% url 'create_blog' %}">Create</a> -->
+                        <a class="bg-orange-500 px-2 md:px-4 py-2  text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in" href="{% url 'login' %}">Login</a>   
+                        <a class="bg-orange-500 px-2 md:px-4 py-2  text-sm rounded hover:bg-opacity-80 transition-all duration-200 ease-in" href="{% url 'register' %}">Signup</a>
+                    </li>
+                    {% endif %}
+                </ul>
+    </header>
+    
+</body>
+</html>
